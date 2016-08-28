@@ -1,7 +1,4 @@
 <div class="container">
-    <div class="row navbar-right">
-        <a href="<?php echo base_url('home/addproduct'); ?>" class="btn btn-info " role="button">Add Product</a>
-    </div>
     <div class="row">   
         <div class="col-md-12">
             <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -32,8 +29,7 @@
                     </tr>
                 </tfoot>
                 <tbody>
-
-                    <?php foreach ($product as $value): ?>
+                    <?php foreach ($orders as $value): ?>
                         <tr>
                             <td><?php echo $value['id']; ?></td>
                             <td><?php echo $value['name']; ?></td>
@@ -46,7 +42,6 @@
                             <td><a href="<?php echo base_url('home/editproduct/'.$value['id']);?>" title="Edit Product"/>Edit </a> ||<a href="<?php echo base_url('home/deleteproduct/'.$value['id']);?>" title="Delete Product"/> Delete </a></td>
                         </tr>
                     <?php endforeach; ?>
-
                 </tbody>
             </table>
         </div>

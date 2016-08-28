@@ -57,4 +57,22 @@ class Home_model  extends CI_Model{
         );
         $this->db->insert('product', $insert_product);
     }
+    
+    public function getproducts(){
+        
+        $products = $this->db->get('product')->result_array();
+        
+        return $products;
+    }
+    
+    public function getusers(){
+          $users = $this->db->get('users')->result_array();
+        
+        return $users;
+    }
+    public function getorders(){
+          $orders = $this->db->get('orders')->result_array();
+        
+        return $orders;
+    }
 }

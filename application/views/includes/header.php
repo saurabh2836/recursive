@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
+        <title>Home</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -42,6 +42,8 @@
                     </div>   
                     <?php else:?>
                       <div class="navbar-right">
+                        <a href="<?php echo base_url('home/users'); ?>"class="btn btn-success">Users</a>
+                        <a href="<?php echo base_url('home/orders'); ?>"class="btn btn-success">Orders</a>
                         <a href="<?php echo base_url('home/product'); ?>"class="btn btn-success">Products</a>
                         <a href="<?php echo base_url('home/logout'); ?>"class="btn btn-success">Logout</a>
                     </div>   
