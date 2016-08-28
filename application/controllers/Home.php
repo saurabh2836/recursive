@@ -94,4 +94,21 @@ class Home extends CI_Controller {
         $this->__display('addproduct', '');
         
     }
+    public function insertproduct() {
+    $this->form_validation->set_rules('name', 'Name', 'trim|required|alpha');
+    $this->form_validation->set_rules('sku', 'Enter SKU', 'trim|required|numeric');
+    $this->form_validation->set_rules('description', 'Product Description', 'required');
+    $this->form_validation->set_rules('price', 'Price', 'numeric|is_natural_no_zero');
+    $this->form_validation->set_rules('course_type', 'Course Type', 'numeric|is_natural_no_zero');
+    $this->form_validation->set_rules('serve_time', 'Serve Time', 'numeric|is_natural_no_zero');
+    if ($this->form_validation->run()) {
+            $prouct = $this->home_model->insertproduct();
+            redirect(base_url().'home/product','refresh');
+        } else {
+            $this->session->set_flashdata('add_product', validation_errors('<p class="alert alert-danger">', '</p>'));
+            redirect(base_url().'home/addproduct','refresh');
+
+        }
+
+    }
 }

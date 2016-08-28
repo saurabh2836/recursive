@@ -1,47 +1,42 @@
 <div class="container margin-top-15">
     <div class=" col-xs-12 ws-col-centered">
         <h1 class="ws-page-title text-center">Add Product</h1>
-        <?php echo $this->session->flashdata('signup_message'); ?>
-        <form class="form" id="signupForm" name="signupForm" role="form" action='<?php echo base_url(); ?>home/verifyUser' method='post'>
+        <?php echo $this->session->flashdata('add_product'); ?>
+        <form class="form" id="signupForm" role="form" action='<?php echo base_url(); ?>home/insertproduct' method='post'>
             <div class="form-group">
-                <label class="sr-only" for="firstName">First  Name</label>
-                <input type='text' class="form-control" id="firstName" name="firstName" placeholder="First Name" required='required' value="<?php echo $first_name; ?>">
+                <label class="sr-only" for="name">Name</label>
+                <input type='text' class="form-control" name="name" placeholder="Name" required='required' />
             </div>
             <div class="form-group">
-                <label class="sr-only" for="lastName">Last Name</label>
-                <input type='text' class="form-control" id="lastName" name=
-                       "lastName" placeholder="Last Name" required='required' value="<?php echo $last_name; ?>">
+                <label class="sr-only" for="SKU">SKU</label>
+                <input type='text' class="form-control" name="sku" placeholder="SKU" required='required' />
             </div>
             <div class="form-group">
-                <label class="sr-only" for="email">Email</label>
-                <input class="form-control" id="email" name="email" type='email'
-                       placeholder="Email" required = 'required' value="<?php echo $email; ?>">
+                <label class="sr-only" for="Description">Description</label>
+                <textarea name="description" required='required' placeholder="Enter Product Description" rows="3" cols="95"></textarea>
             </div>
             <div class="form-group">
-                <label class="sr-only" for="mobile">Mobile</label>
-                <input class="form-control" id="mobile" name="mobile"
-                       placeholder="Mobile Number" type="text" value="<?php echo $mobile; ?>">
+                <label class="sr-only" for="price">price</label>
+                <input class="form-control" id="mobile" name="price" placeholder="Product price" type="text" value="">
             </div>
             <div class="form-group">
-                    <select class="form-control" name="role">
-                        <option value="0" selected="selected">Select Role</option>
-                                <option value="1">customer</option>
-                                <option value="2">Admin</option>
+                    <select class="form-control" name="course_type">
+                        <option value="0" selected="selected">Select Course Type</option>
+                                <option value="1">Starter</option>
+                                <option value="2">Main Course</option>
+                                <option value="3">Dessert</option>
                         </select>
             </div>
             <div class="form-group">
-                <label class="sr-only" for="password">Password</label>
-                <input class="form-control" id="password" name=
-                       "password" required='required' placeholder="Password" type="password" >
-            </div>
-             <div class="form-group">
-                <label class="sr-only" for="conpassword">Confirm
-                    Password</label> 
-                <input class="form-control" id= "conpassword" required='required' name="conpassword" placeholder=
-                                        "Confirm Password" type="password">
+                    <select class="form-control" name="serve_time">
+                        <option value="0" selected="selected">Select Serve Type</option>
+                                <option value="1">Breakfast</option>
+                                <option value="2">Lunch</option>
+                                <option value="3">Dinner</option>
+                        </select>
             </div>
             <div class="form-group">
-            <input class="btn btn-info form-control" id='ws-login-button' type='submit' value='Sign Up'/>
+            <input class="btn btn-info form-control" id='ws-login-button' type='submit' value='Add Product'/>
             </div>
         </form>
     </div>

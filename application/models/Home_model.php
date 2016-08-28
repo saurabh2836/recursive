@@ -44,4 +44,17 @@ class Home_model  extends CI_Model{
         return $query;
         
     }
+    
+    public function insertproduct(){
+      
+        $insert_product = array(
+            'name' => $this->input->post('name',TRUE),
+            'sku' => $this->input->post('sku',TRUE),
+            'description' => $this->input->post('description',TRUE),
+            'price' =>$this->input->post('price',TRUE),
+            'course_type' =>$this->input->post('course_type',TRUE),
+            'serve_time' => $this->input->post('serve_time',TRUE)
+        );
+        $this->db->insert('product', $insert_product);
+    }
 }
