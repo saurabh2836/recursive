@@ -75,4 +75,10 @@ class Home_model  extends CI_Model{
         
         return $orders;
     }
+    public function getproductid($id) {
+        
+        $sql ='SELECT p.id,p.name,p.sku,p.description,p.price,p.quantity,p.image,c.name as course_type,s.name as serve_type from product as p left join course_type as c on p.course_type = c.c_id left join serve_type as s on s.s_id =p.serve_time where p.id = ?';
+        $products = $this->db->query($sql,$id)->row_array();
+        return $products;
+    }
 }

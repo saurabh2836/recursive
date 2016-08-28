@@ -144,5 +144,10 @@ class Home extends CI_Controller {
             return $this->upload->display_errors();
         }
     }
+    
+    public function product_details($product_id) {
+        $data['product'] = $this->home_model->getproductid($product_id);
+        $this->__display('product_details',$data);
+    }
 
 }
