@@ -21,7 +21,8 @@ class Home extends CI_Controller {
      */
     public function index() {
         if (($this->session->userdata('user_login') != '')):
-            $this->__display('dashboard', '');
+            $data['product'] = $this->home_model->getproducts();
+            $this->__display('dashboard',$data);
         else:
             $this->__display('home', '');
         endif;
@@ -58,7 +59,8 @@ class Home extends CI_Controller {
     }
 
     public function verifyUser() {
-
+      if (isset($_FILES))
+            $image = $this->upload_image('./uploads/users');
         $email_original = $this->session->userdata('email');
         $email_post = $this->input->post('email');
         $mobile_original = $this->session->userdata('mobile');
@@ -75,7 +77,7 @@ class Home extends CI_Controller {
         $this->form_validation->set_rules('role', 'Role', 'required');
         $this->session->set_userdata('signup_details', $_POST);
         if ($this->form_validation->run()) {
-            $signup_data = $this->home_model->signupUser();
+            $signup_data = $this->home_model->signupUser($image['orig_name']);
             redirect(base_url(), 'refresh');
         } else {
             $this->session->set_flashdata('signup_message', validation_errors('<p class="alert alert-danger">', '</p>'));
@@ -93,11 +95,9 @@ class Home extends CI_Controller {
     }
 
     public function insertproduct() {
-        echo __line__;
-        echo "<pre>";
-        echo print_r($_POST);
-        echo "</pre>";
-        exit();
+
+        if (isset($_FILES))
+            $image = $this->upload_image('./uploads/products');
         $this->form_validation->set_rules('name', 'Name', 'trim|required|alpha');
         $this->form_validation->set_rules('sku', 'Enter SKU', 'trim|required|numeric');
         $this->form_validation->set_rules('description', 'Product Description', 'required');
@@ -105,7 +105,7 @@ class Home extends CI_Controller {
         $this->form_validation->set_rules('course_type', 'Course Type', 'numeric|is_natural_no_zero');
         $this->form_validation->set_rules('serve_time', 'Serve Time', 'numeric|is_natural_no_zero');
         if ($this->form_validation->run()) {
-            $prouct = $this->home_model->insertproduct();
+            $prouct = $this->home_model->insertproduct($image['orig_name']);
             redirect(base_url() . 'home/product', 'refresh');
         } else {
             $this->session->set_flashdata('add_product', validation_errors('<p class="alert alert-danger">', '</p>'));
@@ -120,16 +120,29 @@ class Home extends CI_Controller {
         endif;
     }
 
-     public function orders() {
-          if (($this->session->userdata('user_login') != '')):
-                $data['orders'] = $this->home_model->getorders();
-                $this->__display('orders', $data);
-         else:
-                     redirect(base_url(), 'refresh');
+    public function orders() {
+        if (($this->session->userdata('user_login') != '')):
+            $data['orders'] = $this->home_model->getorders();
+            $this->__display('orders', $data);
+        else:
+            redirect(base_url(), 'refresh');
         endif;
     }
-    
-    private function upload_image(){
-        
+
+    private function upload_image($path) {
+        $config_arr = array(
+            'upload_path' =>$path,
+            'allowed_types' => 'gif|jpg|png',
+            'max_size' => '2048',
+            'max_width' => '1024',
+            'max_height' => '768'
+        );
+        $this->load->library('upload', $config_arr);
+        if ($this->upload->do_upload()) {
+            return $this->upload->data();
+        } else {
+            return $this->upload->display_errors();
+        }
     }
+
 }

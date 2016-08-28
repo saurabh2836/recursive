@@ -1,30 +1,28 @@
-    <div class="jumbotron">
-      <div class="container">
-        <?php if($this->session->userdata('user_login')['role'] == 1):?>
-             User Dashboard
-        <?php else:?>   
-              Admin Dashboard
-        <?php endif;?>
-        </div>
-    </div>
-
+<div class="jumbotron">
     <div class="container">
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-       </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-      </div>
+        <?php if ($this->session->userdata('user_login')['role'] == 1): ?>
+            User Dashboard
+        <?php else: ?>   
+            Admin Dashboard
+        <?php endif; ?>
     </div>
+</div>
+
+<div class="container">
+    <div class="row">
+           <h2>Product List</h2>
+        <?php foreach ($product as $value): ?>
+            <div class="col-md-4">
+                <h2><?php echo $value['name']; ?></h2>
+                <p><?php if ($value['image'] != ''): ?>
+                        <img src="<?php echo base_url('uploads/products/' . $value['image']); ?>" width="100" height="100"/>
+                    <?php else: ?>
+                        <img src="<?php echo base_url('images/default.jpg'); ?>" width="100" height="100"/>
+                    <?php endif; ?>
+                </p>
+                <p>Rs: <?php echo $value['price']; ?></p>
+                <p>Stock: <?php echo $value['quantity']; ?></p>
+            </div>
+        <?php endforeach; ?> 
+    </div>
+</div>

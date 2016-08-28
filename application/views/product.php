@@ -40,7 +40,13 @@
                             <td><?php echo $value['sku']; ?></td>
                             <td><?php echo $value['description']; ?></td>
                             <td><?php echo $value['price']; ?></td>
-                            <td><?php echo $value['image']; ?></td>
+                            <td>
+                                <?php if( $value['image'] !='' ):?>
+                                    <img src="<?php echo base_url('uploads/products/'.$value['image']);?>" width="100" height="100"/>
+                                 <?php else:?>
+                                    <img src="<?php echo base_url('images/default.jpg');?>" width="100" height="100"/>
+                                    <?php endif;?>
+                            </td>
                             <td><?php echo $value['course_type']; ?></td>
                             <td><?php echo $value['serve_time']; ?></td>
                             <td><a href="<?php echo base_url('home/editproduct/'.$value['id']);?>" title="Edit Product"/>Edit </a> ||<a href="<?php echo base_url('home/deleteproduct/'.$value['id']);?>" title="Delete Product"/> Delete </a></td>

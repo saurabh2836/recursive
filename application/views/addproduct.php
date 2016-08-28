@@ -2,7 +2,7 @@
     <div class=" col-xs-12 ws-col-centered">
         <h1 class="ws-page-title text-center">Add Product</h1>
         <?php echo $this->session->flashdata('add_product'); ?>
-        <form class="form" id="signupForm" role="form" action='<?php echo base_url(); ?>home/insertproduct' method='post' enctype="multipart">
+        <form class="form" role="form" action='<?php echo base_url(); ?>home/insertproduct' method='post' enctype="multipart/form-data">
             <div class="form-group">
                 <label class="sr-only" for="name">Name</label>
                 <input type='text' class="form-control" name="name" placeholder="Name" required='required' />
@@ -21,7 +21,7 @@
             </div>
             <div class="form-group">
                 <label class="sr-only" for="image">Image</label>
-                <input class="form-control" id="image" name="image" placeholder="Uploading Product Image" type="file" value="">
+                <input class="form-control" id="image" name="userfile"  type="file" >
             </div>
             <div class="form-group">
                     <select class="form-control" name="course_type">

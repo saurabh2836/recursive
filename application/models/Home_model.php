@@ -17,8 +17,7 @@ class Home_model  extends CI_Model{
     public function __construct() {
         parent::__construct();
     }
-    public function signupUser() {
-        $this->load->helper('string');
+    public function signupUser($image) {
         $signup_details = $this->session->userdata('signup_details');
         $insert_data = array(
             'fname' => $signup_details['firstName'],
@@ -27,12 +26,11 @@ class Home_model  extends CI_Model{
             'mobile' => $signup_details['mobile'],
             'password' => md5($signup_details['password']),
             'added_on' => date('Y-m-d H:i:s', time()),
-            'role'=>$signup_details['role']
+            'role'=>$signup_details['role'],
+            'image'=>$image
         );
-        
         $this->db->insert('users', $insert_data);
-        $insert_data['Id'] = $this->db->insert_id();
-        return $insert_data;
+      
     }
     
     public function login($email,$password) {
@@ -45,7 +43,7 @@ class Home_model  extends CI_Model{
         
     }
     
-    public function insertproduct(){
+    public function insertproduct($image){
       
         $insert_product = array(
             'name' => $this->input->post('name',TRUE),
@@ -53,8 +51,10 @@ class Home_model  extends CI_Model{
             'description' => $this->input->post('description',TRUE),
             'price' =>$this->input->post('price',TRUE),
             'course_type' =>$this->input->post('course_type',TRUE),
-            'serve_time' => $this->input->post('serve_time',TRUE)
+            'serve_time' => $this->input->post('serve_time',TRUE),
+            'image'=>$image
         );
+        
         $this->db->insert('product', $insert_product);
     }
     
